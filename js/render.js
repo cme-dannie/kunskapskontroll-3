@@ -70,4 +70,25 @@ function renderPlayerTurn({ name, side }) {
   alignSquaresWithCurrentPlayer(side);
 }
 
-export { renderGameArea, renderPlayers, renderPlayerTurn };
+function inactivateGameArea() {
+  const gameArea = document.querySelector(".game-area");
+  gameArea.classList.add("inactive");
+}
+
+function showToast(message) {
+  const toast = document.querySelector(".toast");
+  toast.textContent = message;
+  toast.classList.remove("hidden");
+
+  setTimeout(() => {
+    toast.classList.add("hidden");
+  }, 5000);
+}
+
+export {
+  renderGameArea,
+  renderPlayers,
+  renderPlayerTurn,
+  inactivateGameArea,
+  showToast,
+};

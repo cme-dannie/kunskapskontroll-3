@@ -4,25 +4,38 @@
 
 :root {
   font-size: 62.5%;
+  --box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+body,
+p {
+  margin: 0;
 }
 
 body {
   font-size: 1.6rem;
+  min-height: 100vh;
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+}
+
+.outer-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  font-family: "Open Sans", sans-serif;
+  min-height: inherit;
 }
 
 .container {
   width: 100%;
-  max-width: 50rem;
+  max-width: 40rem;
   margin: 0 auto;
 }
 
 .players {
   font-size: 2.4rem;
+  box-shadow: var(--box-shadow);
 }
 
 .players .icon {
@@ -37,29 +50,31 @@ body {
   align-items: center;
   padding: 0.25em 0.5em;
   transition: all 200ms ease-in;
-  border-radius: 10px;
-  transform: scale(0.95)
 }
 
 .player.has-turn {
   background: rgb(125, 205, 133, 0.5);
-  transform: scale(1);
 }
 
 .game-area {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   margin-top: 2em;
+  box-shadow: var(--box-shadow);
+}
+
+.game-area.inactive {
+  pointer-events: none;
 }
 
 .square {
-  padding: 2em;
-  border-bottom: 3px solid black;
+  padding: 1em;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
   cursor: pointer;
 }
 
 .square:not(:nth-child(3n)) {
-  border-right: 3px solid black;
+  border-right: 2px solid rgba(0, 0, 0, 0.2);
 }
 
 .square:last-child,
@@ -85,4 +100,20 @@ body {
 
 .square:not(.chosen):hover .icon {
   opacity: 0.2;
+}
+
+.toast {
+  position: fixed;
+  left: 0;
+  right: 0;
+  font-size: 2rem;
+  background: rgb(125, 205, 133);
+  box-shadow: var(--box-shadow);
+  transition: all 500ms ease-in-out;
+  padding: 1em;
+}
+
+.toast.hidden {
+  transform: translateY(-100%);
+  opacity: 0;
 }
