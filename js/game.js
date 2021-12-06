@@ -74,8 +74,6 @@ anything else. It's late and I'm tired ;) */
 function playerHasWon() {
   let hasWon = false;
 
-  squares.forEach((square, i) => console.log(square.value, i));
-
   // Iterate rows
   for (let firstOfRow = 0; firstOfRow <= 6; firstOfRow += 3) {
     if (
@@ -144,11 +142,10 @@ function setCurrentPlayer() {
 function onSquareChosen(square) {
   square.value = currentPlayer.side;
   if (gameIsOver()) {
-    if (allSquaresAreChosen()) {
-      showToast("All squares have been chosen, refresh to restart");
-    } else {
+    if (playerHasWon()) {
       showToast(`Player ${currentPlayer.name} has won, refresh to restart`);
-      console.log(currentPlayer.name);
+    } else {
+      showToast("All squares have been chosen, refresh to restart");
     }
     inactivateGameArea();
     return;
